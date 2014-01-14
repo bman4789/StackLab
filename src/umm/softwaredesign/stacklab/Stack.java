@@ -1,3 +1,5 @@
+//Brian Mitchell and Kristin Rachor
+
 package umm.softwaredesign.stacklab;
 
 import java.util.List;
