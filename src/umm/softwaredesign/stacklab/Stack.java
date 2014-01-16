@@ -82,9 +82,9 @@ public class Stack<T> implements StackIF<T> {
 		if(count == 0) {
 			throw new StackUnderflowException();
 		} else {
-			count--;
 			T temp = stack.get(count - 1);
 			stack.remove(count - 1);
+			count--;
 			return temp;
 		}
 	}
