@@ -137,11 +137,14 @@ public class Stack<T> implements StackIF<T> {
 	 */
 	@Override
 	public String toString() {
-		String string = "[";
-		for (T item : stack) {
-			string += " " + item + ",";
+		String str = "";
+		str = str + "Stack[";
+		for (int i = 0; i < count; i++) {
+			str = str + stack.get(i);
+			if (i != count - 1)
+				str = str + ", ";
 		}
-		string += "]";
-		return string;
+		str = str + "]";
+		return str;
 	}
 }
