@@ -114,7 +114,17 @@ public class Stack<T> implements StackIF<T> {
 	 *         elements
 	 */
 	public boolean hasElements(List<T> items) {
-		throw new UnsupportedOperationException();
+		if (items.size() != count) {
+			return false;
+		}
+		int index = 0;
+		for (T item : items) {
+			if(!(item.equals(stack.get(index)))){
+				return false;
+			}
+			index++;
+		}
+		return true;
 	}
 
 	/**
