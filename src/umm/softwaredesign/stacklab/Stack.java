@@ -19,10 +19,10 @@ public class Stack<T> implements StackIF<T> {
 	 * Construct an empty stack.
 	 */
 	private int count = 0;
-	private ArrayList arrlist = new ArrayList<T>();
+	private ArrayList stack;
 
 	public Stack() {
-		throw new UnsupportedOperationException();
+		stack = new ArrayList<T>();
 	}
 
 	/**
@@ -34,7 +34,10 @@ public class Stack<T> implements StackIF<T> {
 	 *            the list of items to initialize the stack
 	 */
 	public Stack(List<T> items) {
-		throw new UnsupportedOperationException();
+		stack = new ArrayList<T>();
+		for (T item : items) {
+			stack.add(item);
+		}
 	}
 
 	/**
