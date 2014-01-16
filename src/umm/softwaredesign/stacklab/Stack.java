@@ -15,12 +15,14 @@ import umm.softwaredesign.stacklab.StackIF;
  * @version $Revision: 1.16 $
  */
 public class Stack<T> implements StackIF<T> {
+	//height of stack
+	private int count = 0;
+	//initialize an arraylist as the stack
+	private ArrayList<T> stack;
+	
 	/**
 	 * Construct an empty stack.
 	 */
-	private int count = 0;
-	private ArrayList<T> stack;
-
 	public Stack() {
 		stack = new ArrayList<T>();
 	}
@@ -35,6 +37,7 @@ public class Stack<T> implements StackIF<T> {
 	 */
 	public Stack(List<T> items) {
 		stack = new ArrayList<T>();
+		//after stack is declared, add the items from the list to the stack
 		for (T item : items) {
 			stack.add(item);
 			count++;
@@ -66,7 +69,9 @@ public class Stack<T> implements StackIF<T> {
 	 *            the value to be pushed.
 	 */
 	public void push(T value) {
+		//add the value to the stack
 		stack.add(value);
+		//add 1 to the height so it is up-to-date
 		count++;
 	}
 
@@ -79,10 +84,13 @@ public class Stack<T> implements StackIF<T> {
 	 *             if the stack is empty
 	 */
 	public T pop() {
+		//cannot pop/remove from an empty stack
 		if(count == 0) {
 			throw new StackUnderflowException();
 		} else {
+			//use a temp variable to hold the last item
 			T temp = stack.get(count - 1);
+			//remove the last item and update height
 			stack.remove(count - 1);
 			count--;
 			return temp;
@@ -98,6 +106,7 @@ public class Stack<T> implements StackIF<T> {
 	 *             if the stack is empty
 	 */
 	public T top() {
+		//cannot get the top item if there are no items
 		if(count == 0) {
 			throw new StackUnderflowException();
 		} else {
@@ -114,11 +123,14 @@ public class Stack<T> implements StackIF<T> {
 	 *         elements
 	 */
 	public boolean hasElements(List<T> items) {
+		//checks to see if the heights/lengths are the same size
 		if (items.size() != count) {
 			return false;
 		}
 		int index = 0;
 		for (T item : items) {
+			//returns false if any item from the list does not equal
+			//the corresponding item from the stack
 			if(!(item.equals(stack.get(index)))){
 				return false;
 			}
@@ -137,10 +149,11 @@ public class Stack<T> implements StackIF<T> {
 	 */
 	@Override
 	public String toString() {
-		String str = "";
-		str = str + "Stack[";
+		String str = "Stack[";
 		for (int i = 0; i < count; i++) {
+			//add the item to the string
 			str = str + stack.get(i);
+			//if not the last item, add a comment and a space
 			if (i != count - 1)
 				str = str + ", ";
 		}
