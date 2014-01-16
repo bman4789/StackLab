@@ -19,7 +19,7 @@ public class Stack<T> implements StackIF<T> {
 	 * Construct an empty stack.
 	 */
 	private int count = 0;
-	private ArrayList stack;
+	private ArrayList<T> stack;
 
 	public Stack() {
 		stack = new ArrayList<T>();
@@ -37,6 +37,7 @@ public class Stack<T> implements StackIF<T> {
 		stack = new ArrayList<T>();
 		for (T item : items) {
 			stack.add(item);
+			count++;
 		}
 	}
 
@@ -65,7 +66,8 @@ public class Stack<T> implements StackIF<T> {
 	 *            the value to be pushed.
 	 */
 	public void push(T value) {
-		throw new UnsupportedOperationException();
+		stack.add(value);
+		count++;
 	}
 
 	/**
@@ -77,7 +79,14 @@ public class Stack<T> implements StackIF<T> {
 	 *             if the stack is empty
 	 */
 	public T pop() {
-		throw new UnsupportedOperationException();
+		if(count == 0) {
+			throw new StackUnderflowException();
+		} else {
+			count--;
+			T temp = stack.get(count - 1);
+			stack.remove(count - 1);
+			return temp;
+		}
 	}
 
 	/**
@@ -89,7 +98,11 @@ public class Stack<T> implements StackIF<T> {
 	 *             if the stack is empty
 	 */
 	public T top() {
-		throw new UnsupportedOperationException();
+		if(count == 0) {
+			throw new StackUnderflowException();
+		} else {
+			return stack.get(count - 1);
+		}
 	}
 
 	/**
@@ -114,6 +127,11 @@ public class Stack<T> implements StackIF<T> {
 	 */
 	@Override
 	public String toString() {
-		throw new UnsupportedOperationException();
+		String string = "[";
+		for (T item : stack) {
+			string += " " + item + ",";
+		}
+		string += "]";
+		return string;
 	}
 }
